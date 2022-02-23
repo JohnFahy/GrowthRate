@@ -1,0 +1,24 @@
+import numpy as np # to hold the data as arrays.
+import matplotlib.pyplot as plt # to visualize the graph
+from sklearn.linear_model import LinearRegression #this has function to do the linear regression
+from sklearn.preprocessing import PolynomialFeatures
+
+s = np.array([20.0, 10.0, 6.6, 5.0, 4.0]).reshape((-1,1)) # substrate concentration (mg/L)
+y = np.array([0.66, 0.50, 0.40, 0.33, 0.28]) # growth rate (per hour)
+
+model = LinearRegression() # this creates an object called model that can do linear regression functions
+model.fit(s,y) # this does the linear regression on the data
+
+y_predictions = model.predict(s)
+plt.plot(s, y_predictions, color='purple')
+
+plt.title("Graph")
+plt.scatter(s,y, color ='green')
+plt.xlabel("Substrate Concentration")
+plt.ylabel("Growth Rate")
+plt.show
+
+r_squared = model.score(s,y)
+print("R Squared: ", r_squared)
+print("Intercept: ", model.intercept_)
+print("Slope: ", model.coef_)
